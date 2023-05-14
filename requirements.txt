@@ -1,0 +1,14 @@
+altgraph==0.17.3
+distlib==0.3.6
+filelock==3.11.0
+macholib==1.16.2
+ordered-set==4.1.0
+platformdirs==3.2.0
+pyinstaller==5.10.1
+pyinstaller-hooks-contrib==2023.2
+pypdf==3.8.0
+PyQt5==5.15.9
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.12.1
+virtualenv==20.21.0
+zstandard==0.21.0
