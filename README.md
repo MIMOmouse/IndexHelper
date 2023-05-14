@@ -2,10 +2,10 @@
 ## Introduction
 
 I created Index Helper to assist with my workflow for writing monograph indexes. As I read through the page proofs, I tell Index Helper what page I am on and what terms to assign to that page. When I am done, I have a .txt file with an alphabetical list of terms and their page numbers.
-### What Index Helper Can't Do
+### What Index Helper Can't Do:
 
 Index Helper doesn't help create any cross references, subentries, or special formatting; nor does it create page number ranges. 
-### How To Use Index Helper
+### How To Use Index Helper:
 
 When you run Index Helper you will see a field labeled "Enter Page Number." Your current page number goes there. Add your terms one by one to the "Enter Terms" field and press return after each addition. You will see your terms displayed in the window below. If you make a mistake do not try to fix it in the window. You will have a chance to edit later. When you move on to another page, simply replace the page number and continue adding terms. When you are done, press the "save" button and save your file as a .txt file.
 
