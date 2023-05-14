@@ -1,5 +1,5 @@
 # IndexHelper
-##Introduction
+## Introduction
 I created Index Helper to assist with my workflow for writing monograph indexes. As I read through the page proofs, I tell Index Helper what page I am on and what terms to assign to that page. When I am done, I have a .txt file with an alphabetical list of terms and their page numbers.
 ### What Index Helper Can't Do
 Index Helper doesn't help create any cross references, subentries, or special formatting; nor does it create page number ranges. 
