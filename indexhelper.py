@@ -9,9 +9,9 @@ from PyQt5.QtWidgets import QFileDialog
 
 from ihgui import Ui_MainWindow
 
-book_index = defaultdict(list)
+book_index = defaultdict(list) #this creates the book index as a dictionary with multiple values for every key
 
-class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow): #this is the gui
     def __init__(self, parent=None):
         super(MyWindow, self).__init__(parent)
         self.setupUi(self)
@@ -29,22 +29,34 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit_2.returnPressed.connect(self.changetext)
         self.lineEdit_2.returnPressed.connect(self.lineEdit_2.clear)
 
-    def changetext(self):
+    def changetext(self): #this function displays the index terms in the window of the gui as they are added
         val = self.lineEdit_2.text()
         self.textEdit.append(val)
         
 
-    def cleanslate(self):
+    def cleanslate(self): #this function clears the window of the gui
         self.textEdit.clear()
         self.lineEdit.clear()
     
 
-    def createindex(self):
+    def createindex(self): #this function adds terms and pages to the index as keys and values to the dictionary
         page = self.lineEdit.text()
         term = self.lineEdit_2.text()
         book_index[term].append(page)
+        
 
-    def updateindex(self):
+    def writeindex(self): #this function writes the index to a .txt file
+        home_dir = str(Path.home())
+        fname = QFileDialog.getSaveFileName(self, 'Save file', home_dir)
+
+        if fname[0]:
+            with open(fname[0], 'w', encoding='utf-8') as json_file:
+                json.dump(book_index, json_file, ensure_ascii=False, sort_keys=True)
+                book_index.clear()
+                self.textEdit.clear()
+                self.lineEdit.clear()
+               
+    def updateindex(self): #this function opens a .txt file and appends to the existing index
         home_dir = str(Path.home())
         fname = QFileDialog.getOpenFileName(self, 'Update file', home_dir)
 
@@ -65,18 +77,7 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.textEdit.clear()
                 self.lineEdit.clear()
 
-    def writeindex(self):
-        home_dir = str(Path.home())
-        fname = QFileDialog.getSaveFileName(self, 'Save file', home_dir)
-
-        if fname[0]:
-            with open(fname[0], 'w', encoding='utf-8') as json_file:
-                json.dump(book_index, json_file, ensure_ascii=False, sort_keys=True)
-                book_index.clear()
-                self.textEdit.clear()
-                self.lineEdit.clear()
-
-    def openformatted(self):
+    def openformatted(self): #this opens a .txt file containing your index to display in the gui window
         home_dir = str(Path.home())
         fname = QFileDialog.getOpenFileName(self, 'Format file', home_dir)
 
@@ -91,7 +92,7 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.textEdit.append('%s: %s\n' % (key, value))
            
     
-    def editindex(self):
+    def editindex(self): #this function reads the text in the gui window and writes it to a file
         home_dir = str(Path.home())
         fname = QFileDialog.getSaveFileName(self, 'Save file', home_dir)
 
@@ -104,7 +105,7 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 json.dump(reedited, json_file, ensure_ascii=False, sort_keys=True)
                 self.textEdit.clear()
 
-    def formattedvers(self):
+    def formattedvers(self): #this function opens a .txt file and converts the json dict to a nicely formatted .txt file
         home_dir = str(Path.home())
         fname = QFileDialog.getOpenFileName(self, 'Open file', home_dir)
 
@@ -125,5 +126,3 @@ if __name__ == "__main__":
     myWindow = MyWindow()
     myWindow.show()
     app.exec_()
-
-  
