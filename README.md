@@ -11,7 +11,8 @@ Index Helper saves your index as a json dictionary, which doesn't look like a bo
 ## Built With
 Python
 ## Prerequisites
--Python 3.11.1
+-Python 3.11
+
 -Libraries installed from requirements.txt
 ## Installation
 1. download the indexhelper.py, ihgui.py, and requirements.txt files in a new project folder
