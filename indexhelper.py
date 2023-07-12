@@ -87,7 +87,7 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow): #this is the gui
             with f:
                 data = json.load(f)
                 for key, value in data.items():
-                    value.sort()
+                    value.sort(key=int)
                     value = ", ".join(map(str, value))
                     self.textEdit.append('%s: %s\n' % (key, value))
            
@@ -117,10 +117,12 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow): #this is the gui
 
                 with open(fname[0], 'w') as f:
                     for key, value in data.items():
-                        value.sort()
-                        value = ", ".join(map(str, value))
-                        f.write('%s: %s\n' % (key, value))
-
+                        svalue = set(value)
+                        lvalue = list(svalue)
+                        lvalue.sort(key=int)
+                        lvalue = ", ".join(map(str, lvalue))
+                        f.write('%s: %s\n' % (key, lvalue))
+                        
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     myWindow = MyWindow()
